@@ -2,18 +2,15 @@ import 'dart:html';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:premier_attend_sys/deshboard/course.dart';
 
 import 'teacher_attendence_view.dart';
 
-class Deshboard extends StatefulWidget {
-  const Deshboard({Key? key}) : super(key: key);
-
+class Course extends StatefulWidget {
   @override
-  _DeshboardState createState() => _DeshboardState();
+  _CourseState createState() => _CourseState();
 }
 
-class _DeshboardState extends State<Deshboard> {
+class _CourseState extends State<Course> {
   final items = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'];
   String? value;
   String? value1;
@@ -31,6 +28,58 @@ class _DeshboardState extends State<Deshboard> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Container(
+                margin: EdgeInsets.all(10),
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                decoration: BoxDecoration(
+                  border: Border.all(width: 3, color: Colors.deepPurple),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: DropdownButton<String>(
+                  value: value,
+                  hint: const Text("Select Session Type"),
+                  style: const TextStyle(
+                      fontSize: 20,
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold),
+                  iconSize: 36,
+                  icon: const Icon(
+                    Icons.arrow_drop_down,
+                    color: Colors.black,
+                  ),
+                  isExpanded: true,
+                  items: items.map(buildMenuItem).toList(),
+                  onChanged: (value) => setState(() {
+                    this.value = value;
+                  }),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.all(10),
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                decoration: BoxDecoration(
+                  border: Border.all(width: 3, color: Colors.deepPurple),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: DropdownButton<String>(
+                  value: value,
+                  hint: const Text("Select Session Type"),
+                  style: const TextStyle(
+                      fontSize: 20,
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold),
+                  iconSize: 36,
+                  icon: const Icon(
+                    Icons.arrow_drop_down,
+                    color: Colors.black,
+                  ),
+                  isExpanded: true,
+                  items: items.map(buildMenuItem).toList(),
+                  onChanged: (value) => setState(() {
+                    this.value = value;
+                  }),
+                ),
+              ),
               Container(
                 margin: EdgeInsets.all(10),
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -89,15 +138,17 @@ class _DeshboardState extends State<Deshboard> {
               TextButton(
                 onPressed: () {
                   Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => Course()));
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const TeacherAttendenceView()));
                 },
                 child: const Text(
-                  "Continue",
+                  "Go To Attendence",
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.blue,
-                  fixedSize: const Size(100, 50),
+                  fixedSize: const Size(200, 50),
                 ),
               )
             ],
